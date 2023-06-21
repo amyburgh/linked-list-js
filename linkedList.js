@@ -12,28 +12,23 @@ class LinkedList {
 
   append(data) {
     const node = new Node(data)
-
-    if (this.list === null) {
+    if (!this.list) {
       this.list = node
       return
     }
-
     let tmp = this.list
-    while (tmp.next !== null) tmp = tmp.next
+    while (tmp.next) tmp = tmp.next
     tmp.next = node
-
-    return node
   }
 
   prepend(data) {
     this.list = new Node(data, this.list)
-    return this.list
   }
 
   size() {
     let tmp = this.list
     let size = 0
-    while (tmp !== null) {
+    while (tmp) {
       tmp = tmp.next
       size += 1
     }
@@ -45,17 +40,17 @@ class LinkedList {
   }
 
   tail() {
-    if (this.list === null) return list
+    if (!this.list) return list
 
     let tmp = this.list
-    while (tmp.next !== null) tmp = tmp.next
+    while (tmp.next) tmp = tmp.next
     return tmp
   }
 
   at(index) {
     if (index < 0) throw new Error('Index must be a positive number')
-    let tmp = this.list
 
+    let tmp = this.list
     while (tmp && index >= 0) {
       if (index === 0) return tmp
       tmp = tmp.next
@@ -69,14 +64,12 @@ class LinkedList {
     const size = this.size()
     const tmp = this.at(size - 2)
     const popped = tmp.next
-
     tmp.next = null
     return popped
   }
 
   contains(data) {
     let tmp = this.list
-
     while (tmp) {
       if (tmp.data === data) return true
       tmp = tmp.next
@@ -86,7 +79,6 @@ class LinkedList {
 
   find(data) {
     let tmp = this.list
-
     for (let index = 0; tmp; index++) {
       if (tmp.data === data) return index
       tmp = tmp.next
@@ -97,7 +89,6 @@ class LinkedList {
   toString() {
     let string = ''
     let tmp = this.list
-
     while (tmp) {
       string += `[ ${tmp.data} ] -> `
       tmp = tmp.next
@@ -112,7 +103,6 @@ class LinkedList {
     const node = new Node(data)
     let prev = this.list
     let tmp = prev.next
-
     for (let i = 1; tmp; i++) {
       if (i === index) {
         prev.next = node
@@ -132,6 +122,7 @@ class LinkedList {
       tmp.next = null
       return tmp
     }
+
     let prev = this.list
     let tmp = prev.next
     for (let i = 1; tmp; i++) {
