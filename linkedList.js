@@ -14,11 +14,11 @@ class LinkedList {
     const node = new Node(data)
     if (!this.list) {
       this.list = node
-      return
+    } else {
+      let tmp = this.list
+      while (tmp.next) tmp = tmp.next
+      tmp.next = node
     }
-    let tmp = this.list
-    while (tmp.next) tmp = tmp.next
-    tmp.next = node
   }
 
   prepend(data) {
